@@ -47,23 +47,24 @@ class _RachaListPageState extends State<RachaListPage> {
                   );
                 },
               ),
-              Column(
-                children: [
-                  const Text("Jogadores por time"),
-                  Slider(
-                    value: playersPerTeam.toDouble(),
-                    min: 1.toDouble(),
-                    max: players.length.toDouble(),
-                    label: playersPerTeam.round().toString(),
-                    onChanged: (double value) {
-                      setState(() {
-                        playersPerTeam = value.ceil();
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Text("Número de jogadores por time: ${playersPerTeam.floor()}"),
+              if (players.length > 2)
+                Column(
+                  children: [
+                    Text(
+                        "Número de jogadores por time: ${playersPerTeam.floor()}"),
+                    Slider(
+                      value: playersPerTeam.toDouble(),
+                      min: 1.toDouble(),
+                      max: players.length.floorToDouble(),
+                      label: playersPerTeam.round().toString(),
+                      onChanged: (double value) {
+                        setState(() {
+                          playersPerTeam = value.ceil();
+                        });
+                      },
+                    ),
+                  ],
+                ),
               TextButton(
                   onPressed: () {
                     players.removeWhere((element) => element.isEmpty);
