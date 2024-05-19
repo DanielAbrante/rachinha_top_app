@@ -57,11 +57,11 @@ class _RachaListPageState extends State<RachaListPage> {
             ),
           )),
           Padding(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.symmetric(vertical: 0),
               child: Column(children: [
                 if (players.length > 2)
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 48),
+                    padding: const EdgeInsets.only(bottom: 20),
                     child: Column(
                       children: [
                         Slider(
