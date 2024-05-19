@@ -40,19 +40,27 @@ class TeamsPage extends StatelessWidget {
       shrinkWrap: true,
       itemCount: teamsQuantity,
       itemBuilder: (context, index) {
-        return Column(
-          children: [
-            Text("Time 0${index + 1}"),
-            ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemBuilder: (context, player) {
-                return Text(teams[index][player]);
-              },
-              itemCount: teams[index].length,
-            )
-          ],
-        );
+        return Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Text(
+                  "Time 0${index + 1}",
+                  style: const TextStyle(fontSize: 26),
+                ),
+                ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemBuilder: (context, player) {
+                    return Text(
+                      teams[index][player],
+                      style: const TextStyle(fontSize: 22),
+                    );
+                  },
+                  itemCount: teams[index].length,
+                )
+              ],
+            ));
       },
     )));
   }
