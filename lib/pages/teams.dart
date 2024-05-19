@@ -34,7 +34,10 @@ class TeamsPage extends StatelessWidget {
     }
 
     return Scaffold(
-        body: ListView.builder(
+        body: SingleChildScrollView(
+            child: ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
       itemCount: teamsQuantity,
       itemBuilder: (context, index) {
         return Column(
@@ -46,11 +49,11 @@ class TeamsPage extends StatelessWidget {
               itemBuilder: (context, player) {
                 return Text(teams[index][player]);
               },
-              itemCount: sempre,
+              itemCount: teams[index].length,
             )
           ],
         );
       },
-    ));
+    )));
   }
 }

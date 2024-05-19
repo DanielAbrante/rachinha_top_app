@@ -29,7 +29,6 @@ class _RachaListPageState extends State<RachaListPage> {
           Expanded(
               child: SingleChildScrollView(
             child: ListView.builder(
-              scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: players.length,
               itemBuilder: (context, index) {
