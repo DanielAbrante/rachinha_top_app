@@ -1,22 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rachinha_top_app/utils/app_routes.dart';
+import 'package:rachinha_top_app/widgets/racha_list/list_settings.dart';
+import 'package:rachinha_top_app/widgets/racha_list/players_list.dart';
 
-class RachaListPage extends StatefulWidget {
+class RachaListPage extends StatelessWidget {
   const RachaListPage({super.key});
-
-  @override
-  State<RachaListPage> createState() => _RachaListPageState();
-}
-
-class _RachaListPageState extends State<RachaListPage> {
-  List<String> players = [];
-  int playersPerTeam = 1;
-
-  @override
-  void initState() {
-    super.initState();
-    players.add("");
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,72 +11,10 @@ class _RachaListPageState extends State<RachaListPage> {
       appBar: AppBar(
         title: const Text('Lista do Racha'),
       ),
-      body: Column(
+      body: const Column(
         children: [
-          Expanded(
-              child: SingleChildScrollView(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: players.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: TextField(
-                      autofocus: players.length > 1,
-                      decoration: const InputDecoration(hintText: "Jogador(a)"),
-                      keyboardType: TextInputType.name,
-                      onChanged: (value) {
-                        setState(() {
-                          players[index] = value;
-                        });
-                      },
-                      onSubmitted: (value) {
-                        String lastPlayerEntry = players[players.length - 1];
-
-                        if (lastPlayerEntry.isNotEmpty) {
-                          setState(() {
-                            players.add("");
-                          });
-                        }
-                      },
-                    ));
-              },
-            ),
-          )),
-          Padding(
-              padding: const EdgeInsets.symmetric(vertical: 0),
-              child: Column(children: [
-                if (players.length > 2)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Column(
-                      children: [
-                        Slider(
-                          value: playersPerTeam.toDouble(),
-                          min: 1.toDouble(),
-                          max: players.length.floorToDouble(),
-                          label: playersPerTeam.round().toString(),
-                          onChanged: (double value) {
-                            setState(() {
-                              playersPerTeam = value.ceil();
-                            });
-                          },
-                        ),
-                        Text("Jogadores por time: ${playersPerTeam.floor()}"),
-                      ],
-                    ),
-                  ),
-                ElevatedButton(
-                    onPressed: () {
-                      players.removeWhere((element) => element.isEmpty);
-
-                      Navigator.pushNamed(context, AppRoutes.teams, arguments: {
-                        "players": players,
-                        "playersPerTeam": playersPerTeam
-                      });
-                    },
-                    child: const Text("Sortear Times")),
-              ]))
+          PlayersList(),
+          ListSettings(),
         ],
       ),
     );
