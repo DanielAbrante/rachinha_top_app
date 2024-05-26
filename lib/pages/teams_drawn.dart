@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TeamsPage extends StatelessWidget {
-  const TeamsPage({super.key});
+class TeamsDrawnPage extends StatelessWidget {
+  const TeamsDrawnPage({super.key});
 
   @override
   Widget build(BuildContext context) {

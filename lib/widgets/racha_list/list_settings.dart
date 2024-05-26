@@ -16,7 +16,7 @@ class _ListSettingsState extends State<ListSettings> {
     final rachaList = Provider.of<RachaListController>(context, listen: false);
 
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 0),
+        padding: const EdgeInsets.only(bottom: 20),
         child: Column(children: [
           if (rachaList.players.length > 2)
             Padding(

@@ -14,7 +14,7 @@ class _PlayersListState extends State<PlayersList> {
   Widget build(BuildContext context) {
     final rachaList = Provider.of<RachaListController>(context, listen: false);
 
-    return SingleChildScrollView(
+    return Expanded(
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: rachaList.players.length,
@@ -33,7 +33,7 @@ class _PlayersListState extends State<PlayersList> {
                 onSubmitted: (value) {
                   String lastPlayerEntry =
                       rachaList.players[rachaList.players.length - 1];
-
+      
                   if (lastPlayerEntry.isNotEmpty) {
                     setState(() {
                       rachaList.players.add("");
