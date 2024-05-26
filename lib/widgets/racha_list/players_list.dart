@@ -21,19 +21,20 @@ class _PlayersListState extends State<PlayersList> {
         itemBuilder: (context, index) {
           return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: TextField(
+              child: TextFormField(
                 autofocus: rachaList.players.length > 1,
                 decoration: const InputDecoration(hintText: "Jogador(a)"),
                 keyboardType: TextInputType.name,
+                initialValue: rachaList.players[index],
                 onChanged: (value) {
                   setState(() {
                     rachaList.players[index] = value;
                   });
                 },
-                onSubmitted: (value) {
+                onFieldSubmitted: (value) {
                   String lastPlayerEntry =
                       rachaList.players[rachaList.players.length - 1];
-      
+
                   if (lastPlayerEntry.isNotEmpty) {
                     setState(() {
                       rachaList.players.add("");
