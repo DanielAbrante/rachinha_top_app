@@ -29,14 +29,9 @@ class _SignInPageState extends State<SignInPage> {
       body: Container(
         color: Colors.blue[100],
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const LogoWidget(
-              sourceImage: 'assets/images/icon-192x192.png',
-              heightImage: 60.0,
-              widthImage: 60.0,
-            ),
+            const Logo(),
             InputWidget(
               label: 'Email',
               controller: emailController,
@@ -78,7 +73,7 @@ class _SignInPageState extends State<SignInPage> {
             ),
             TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.index,
+                  Navigator.pushReplacementNamed(context, AppRoutes.index,
                       arguments: {"email": "convidado"});
                 },
                 child: const Text("Entrar como convidado"))

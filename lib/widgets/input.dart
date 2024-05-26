@@ -14,21 +14,16 @@ class InputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 46.0, vertical: 8.0),
-          child: TextFormField(
-            obscureText: isPassword, // incluir mascára no input
-            controller: controller, // texto informado no input
-            decoration: InputDecoration(
-              border: const UnderlineInputBorder(),
-              labelText: label,
-            ),
-          ),
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 46.0, vertical: 8.0),
+      child: TextFormField(
+        obscureText: isPassword,
+        controller: controller,
+        decoration: InputDecoration(
+          border: const UnderlineInputBorder(),
+          labelText: label,
+        ),
+      ),
     );
   }
 }

@@ -13,21 +13,13 @@ class SignUpPage extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
     final supabaseClient = SupabaseInstance();
 
-    Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: Container(
         color: Colors.blue[100],
-        width: size.width,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const LogoWidget(
-              sourceImage: 'assets/images/icon-192x192.png',
-              heightImage: 60.0,
-              widthImage: 60.0,
-            ),
+            const Logo(),
             InputWidget(
               label: 'Email',
               controller: emailController,
