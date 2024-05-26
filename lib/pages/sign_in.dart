@@ -1,45 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:rachinha_top_app/service/supabase_client.dart';
 import 'package:rachinha_top_app/utils/app_routes.dart';
-import 'package:rachinha_top_app/widgets/errors.dart';
 import 'package:rachinha_top_app/widgets/input.dart';
 import 'package:rachinha_top_app/widgets/logo.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignInPageState extends State<SignInPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final supabaseClient = SupabaseInstance();
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
-  }
-
-  Future<void> authenticateUser() async {
-    String email = emailController.text;
-    String password = passwordController.text;
-
-    try {
-      await Supabase.instance.client.auth
-          .signInWithPassword(password: password, email: email);
-
-      Navigator.of(context).pushNamed(AppRoutes.index,
-          arguments: {"email": emailController.text});
-    } on AuthApiException catch (error) {
-      showDialog(
-          context: context,
-          builder: (context) => ErrorDialog(
-                error: error,
-              ));
-    }
   }
 
   @override
@@ -75,7 +56,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: const Text('Entrar'),
                   onPressed: () {
-                    authenticateUser();
+                    supabaseClient.signIn(
+                        email: emailController.text,
+                        password: passwordController.text);
+
+                    Navigator.of(context).pushNamed(AppRoutes.index,
+                        arguments: {"email": emailController.text});
                   },
                 )),
             Row(
