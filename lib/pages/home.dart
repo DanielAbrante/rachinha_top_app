@@ -6,15 +6,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, String> user =
-        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+    dynamic user = ModalRoute.of(context)?.settings.arguments;
 
-    final String? email = user['email'];
-    final username = email?.split("@")[0];
+    final username = user?.split("@")[0];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bem-vindo, $username"),
+        title: user != null
+            ? Text("Bem-vindo, $username")
+            : const Text("Bem-vindo, convidado"),
         leading: IconButton(
             onPressed: () {
               Navigator.pushReplacementNamed(context, AppRoutes.login);

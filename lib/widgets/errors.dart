@@ -8,7 +8,7 @@ class ErrorDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String customMessageError = teste(error);
+    final String customMessageError = errorMessages(error);
 
     return AlertDialog(
       title: const Text('Erro'),
@@ -25,11 +25,11 @@ class ErrorDialog extends StatelessWidget {
   }
 }
 
-String teste(AuthException error) {
+String errorMessages(AuthException error) {
   switch (error.message) {
     case "Invalid login credentials":
       return "Credenciais de login inválidas";
     default:
-      return "Outro tipo de erro";
+      return "Infelizmente ocorreu um erro, tente novamente";
   }
 }
