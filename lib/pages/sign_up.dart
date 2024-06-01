@@ -24,8 +24,6 @@ class SignUpPage extends StatelessWidget {
         }
       } catch (error) {
         if (error is AuthException) {
-          print(error.message);
-
           showDialog(
               context: context,
               builder: (context) => ErrorDialog(error: error));
