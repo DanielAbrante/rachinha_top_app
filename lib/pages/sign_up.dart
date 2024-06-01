@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rachinha_top_app/utils/app_routes.dart';
+import 'package:rachinha_top_app/widgets/errors.dart';
 import 'package:rachinha_top_app/widgets/input.dart';
 import 'package:rachinha_top_app/widgets/logo.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -10,6 +12,26 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+
+    Future<void> signUp(String email, String password) async {
+      try {
+        final AuthResponse response = await Supabase.instance.client.auth
+            .signUp(email: email, password: password);
+
+        if (response.user != null) {
+          Navigator.pushReplacementNamed(context, AppRoutes.index,
+              arguments: response.user?.email);
+        }
+      } catch (error) {
+        if (error is AuthException) {
+          print(error.message);
+
+          showDialog(
+              context: context,
+              builder: (context) => ErrorDialog(error: error));
+        }
+      }
+    }
 
     return Scaffold(
       backgroundColor: Colors.blue[100],
@@ -36,8 +58,8 @@ class SignUpPage extends StatelessWidget {
               ),
               child: const Text('Criar conta'),
               onPressed: () {
-                Navigator.of(context).pushNamed(AppRoutes.index,
-                    arguments: {"email": emailController.text});
+                signUp(emailController.text.trim(),
+                    passwordController.text.trim());
               },
             ),
           ),
