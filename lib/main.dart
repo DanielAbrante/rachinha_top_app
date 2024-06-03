@@ -11,7 +11,7 @@ Future<void> main() async {
   final supabaseUrl = dotenv.env['SUPABASE_URL'];
   final supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY'];
 
-  if (supabaseUrl!.isEmpty || supabaseAnonKey!.isEmpty) {
+  if (supabaseUrl!.isEmpty || supabaseAnonKey!. isEmpty) {
     throw Exception(
         'Supabase URL ou AnonKey não foram encontrados no arquivo .env');
   }

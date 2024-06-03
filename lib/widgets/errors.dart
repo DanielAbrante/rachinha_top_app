@@ -28,7 +28,7 @@ class ErrorDialog extends StatelessWidget {
 String errorMessages(AuthException error) {
   switch (error.message) {
     case "Invalid login credentials":
-      return "Credenciais de login inválidas";
+      return "Credenciais de logina inválidas";
     case "You must provide either an email or phone number":
       return "Você deve inserir um email válido";
     case "Anonymous sign-ins are disabled":
